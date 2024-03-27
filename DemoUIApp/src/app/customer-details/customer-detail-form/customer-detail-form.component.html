@@ -1,0 +1,50 @@
+<form #form="ngForm" (ngSubmit)="onSubmit(form)">
+    <input type="hidden" name="customerID" [value]="service.customerData.customerID">
+    <div class="mb-3">
+        <label>Customer Name</label>
+        <input class="form-control form-control-lg" placeholder="Customer Name" #customerName="ngModel" 
+        name="customerName" [(ngModel)] = "service.customerData.customerName" required minlength="5">
+        <div class="text-danger" *ngIf="customerName.invalid && (customerName.touched || customerName.dirty) || isFormSubmitted">
+            <span *ngIf="customerName.errors?.['required']">This is required</span>
+            <span *ngIf="customerName.errors?.['minlength']">Customer name should be minimum 5 characters</span>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label>Address</label>
+        <input class="form-control form-control-lg" placeholder="Address" #address="ngModel" 
+        name="address" [(ngModel)] = "service.customerData.address" required>
+        <div class="text-danger" *ngIf="address.invalid && (address.touched || address.dirty) || isFormSubmitted">
+            <span *ngIf="address.errors?.['required']">Address is required</span>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label>City</label>
+        <input class="form-control form-control-lg" placeholder="City" #city="ngModel" 
+        name="city" [(ngModel)] = "service.customerData.city" required>
+        <div class="text-danger" *ngIf="city.invalid && (city.touched || city.dirty) || isFormSubmitted">
+            <span *ngIf="city.errors?.['required']">City is required</span>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label>State</label>
+        <input class="form-control form-control-lg" placeholder="State" #state="ngModel" 
+        name="state" [(ngModel)] = "service.customerData.state" required minlength="2" maxlength="2">
+        <div class="text-danger" *ngIf="state.invalid && (state.touched || state.dirty) || isFormSubmitted">
+            <span *ngIf="state.errors?.['required']">State is required</span>
+            <span *ngIf="state.errors?.['minlength']">Invalid state</span>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label>Comments</label>
+        <input class="form-control form-control-lg" placeholder="Comments" #comments="ngModel" 
+        name="comments" [(ngModel)] = "service.customerData.comments">
+    </div>
+    <div class="mb-3">
+        <button class="btn btn-lg btn-success" (click)="backtoCustomers()">
+            Back to List
+        </button>       
+        <button [disabled]="!form.valid" class="btn btn-lg btn-success" type="submit">
+            Submit
+        </button>
+    </div>
+</form>

@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="row">
+        <div id="wrap">
+            <div  id="menu">
+              <ul>
+                <li *ngIf="isUserAuthenticated()">
+                  <ul>
+                    <li><a routerLink="home">Home</a></li>
+                    <li><a routerLink="customer">Customers</a></li>
+                    <li><a routerLink="order">Orders</a></li>
+                    <li><a href="#" class="logout" (click)="logOut()">Log out</a></li>
+                  </ul>
+                </li>
+                <li *ngIf="!isUserAuthenticated()"><a routerLink="/login">Login</a></li>
+              </ul>
+            </div>
+            <div id="content-wrap">
+              <div id="main"> <a name="TemplateInfo"></a>
+                <router-outlet></router-outlet>
+              </div>
+            </div>
+          </div>
+    </div>
+</div>
